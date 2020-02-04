@@ -1,0 +1,28 @@
+<project >
+
+  <target name="clean">
+    <echo message="cleaning project"/>
+    <delete dir="out"/>
+
+  </target>
+  <target  name="compile" depends="clean">
+    <echo message="compile project" />
+    <mkdir dir="out"/>
+    <javac srcdir="src" destdir="out" />
+  </target>
+  <target name="packaging" depends="compile">
+    <echo message="packagiing classe file" />
+    <mkdir dir="build/jar" />
+    <jar destfile="build/jar/AntDemonstration.jar" basedir="out">
+      <manifest>
+        <attribute name="Main-Class" value="AntDemonstration" />
+      </manifest>
+
+    </jar>
+  </target>
+
+  <target name="run" depends="packaging">
+    <echo message="runing project " />
+    <java jar="build/jar/AntDemonstration.jar" fork="true"></java>
+  </target>
+</project>
